@@ -1,0 +1,30 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "this is my react practice",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramrohith999/reactpractice.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Ram Rohith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramrohith999/reactpractice/issues"
+  },
+  "homepage": "https://github.com/ramrohith999/reactpractice#readme",
+  "devDependencies": {
+    "parcel": "^2.14.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
