@@ -1,6 +1,12 @@
-import RestaurantCard from "./RestrauntCard";
-import { useState, useEffect } from "react";
+import RestaurantCard, {withPromotedLabel} from "./RestrauntCard";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+
+
+const RestaurantCardPromoted=withPromotedLabel(RestaurantCard);
 
 const Body=()=>{
 
@@ -26,42 +32,89 @@ setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithSty
 setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 }
 
+const onlineStatus=useOnlineStatus();
 
-    return listOfRestaurants.length===0 ? <Shimmer/> :( 
-      <div className="body">
-        <div className="search">
-          <input type="text" placeholder="what do you wanna eat..." value={searchText} onChange={(e)=>{
-            setSearchText(e.target.value);
-          }}/>
-          <button onClick={()=>{
-          const filtered=  listOfRestaurants.filter((restaurant)=>restaurant.info.name.toLowerCase().includes(searchText.toLowerCase()));
-          setFilteredRestaurants(filtered);
-          }}>search</button>
-        </div>
+if(onlineStatus===false) return <h1>Looks like you are offline. please check your internet connection</h1>
+
+const{setUserName, loggedInUser}=useContext(UserContext);
 
 
-        <div className="filter">
-            <button className="filter-btn"
-             onClick={()=>{
-                const filteredList= listOfRestaurants.filter(
-                    (restaurant)=>restaurant.info.avgRating> 4.5
-                );
-                setFilteredRestaurants (filteredList);
-                console.log("button clicked");
-            }}
-             >Top Rated Restraunts</button>
-        </div>
-        <div className="restraunt-container">
-          {
-            filteredRestaurants.map((restaurant)=>(
-            <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
-
-            ))
-          }
-  
-        </div>
+return listOfRestaurants.length === 0 ? (
+  <Shimmer />
+) : (
+  <div className="bg-gray-50 min-h-screen px-6 py-6">
+    {/* Search + Filter */}
+    <div className="flex flex-col md:flex-row md:items-center gap-4 md:justify-between mb-6">
+      <div className="flex flex-1 gap-2">
+        <input
+          type="text"
+          placeholder="What do you wanna eat?"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+        />
+        <button
+          onClick={() => {
+            const filtered = listOfRestaurants.filter((restaurant) =>
+              restaurant.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase())
+            );
+            setFilteredRestaurants(filtered);
+          }}
+          className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg shadow transition"
+        >
+          Search
+        </button>
       </div>
-    )
+
+      <button
+        onClick={() => {
+          const filteredList = listOfRestaurants.filter(
+            (restaurant) => restaurant.info.avgRating > 4.5
+          );
+          setFilteredRestaurants(filteredList);
+        }}
+        className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow transition"
+      >
+        Top Rated Restaurants
+      </button>
+    </div>
+
+{/* usecontext example */}
+
+<div className="flex items-center gap-3 mb-6">
+  <label htmlFor="username" className="text-base text-gray-800 font-semibold">
+    Username:
+  </label>
+  <input
+    
+    type="text"
+    value={loggedInUser}
+    onChange={(e) => setUserName(e.target.value)}
+    className="w-60 px-4 py-2 rounded-md border border-gray-300 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-gray-800 placeholder-gray-400 outline-none transition duration-200"
+  />
+</div>
+
+    {/* Restaurant Cards Grid */}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      {filteredRestaurants.map((restaurant) => (
+        <Link
+          key={restaurant.info.id}
+          to={"/restaurants/" + restaurant.info.id}
+          className="hover:scale-[1.02] transition-transform duration-300"
+        >
+          {restaurant.info.veg? 
+          (<RestaurantCardPromoted resData={restaurant} />)
+          :
+           (  
+           <RestaurantCard resData={restaurant} />
+          )}
+        </Link>
+      ))}
+    </div>
+  </div>
+);
   
   }
 

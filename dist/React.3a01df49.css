@@ -233,4 +233,43 @@ body {
     background-position: 800px 0;
   }
 }
+
+.about-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  font-family: Segoe UI, sans-serif;
+}
+
+.about-container h1 {
+  color: #1976d2;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+}
+
+.user-card {
+  background-color: #f3f6fa;
+  border-radius: 12px;
+  margin: 15px 0;
+  padding: 20px;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 12px #0000001a;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px #00000026;
+}
+
+.user-card h2 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+
+.user-card h3 {
+  color: #555;
+  font-size: 1.1rem;
+}
 /*# sourceMappingURL=React.3a01df49.css.map */

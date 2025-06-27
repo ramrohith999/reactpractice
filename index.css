@@ -1,4 +1,24 @@
-/* Reset some basic styles */
+@import "tailwindcss";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Reset some basic styles
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +30,7 @@
     background-color: #f8f9fa;
   }
   
-  /* Header styles */
+  
   .header {
     display: flex;
     justify-content: space-between;
@@ -23,7 +43,6 @@
     z-index: 100;
   }
   
-  /* Logo container */
   .logo-container {
     display: flex;
     align-items: center;
@@ -35,7 +54,6 @@
     border-radius: 8px;
   }
   
-  /* Nav Items */
   .nav-items ul {
     list-style: none;
     display: flex;
@@ -81,20 +99,17 @@
   }
   
   
-  /* Optional: Hover effect on cart icon */
   .nav-items li:hover img {
     transform: scale(1.1);
   }
   
   
-  /* Body container */
 .body {
     padding: 32px;
     max-width: 1200px;
     margin: 0 auto;
   }
   
-  /* Search bar */
   .search {
     display: flex;
     justify-content: center;
@@ -131,15 +146,12 @@
     background-color: #e5533d;
   }
   
-  /* Restaurant card grid */
   .restraunt-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 24px;
   }
   
-  /* Restaurant card styles */
-  /* Restaurant Card */
 .restraunt-card {
     background-color: #fff;
     border-radius: 12px;
@@ -157,7 +169,6 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
   
-  /* Restaurant image */
   .restraunt-card img {
     width: 100%;
     height: 160px;
@@ -165,23 +176,20 @@
     border-radius: 8px;
   }
   
-  /* Restaurant name */
   .restraunt-card h3 {
     font-size: 20px;
     color: #333;
     margin-top: 8px;
   }
   
-  /* Additional info (cuisine, rating, cost, delivery) */
   .restraunt-card h4 {
     font-size: 15px;
     color: #555;
     font-weight: 400;
   }
-/*filter button styling */
   .filter-btn {
     padding: 10px 16px;
-    background-color: #ff4d4d; /* bold red to attract attention */
+    background-color: #ff4d4d;
     color: white;
     border: none;
     border-radius: 8px;
@@ -192,16 +200,16 @@
   }
   
   .filter-btn:hover {
-    background-color: #e63946; /* slightly darker red on hover */
+    background-color: #e63946; 
   }
   
   .filter-btn:active {
-    transform: scale(0.97); /* small press effect */
+    transform: scale(0.97); 
   }
 
   .login {
     padding: 10px 20px;
-    background-color: #1e90ff; /* primary blue tone for contrast */
+    background-color: #1e90ff; 
     color: white;
     border: none;
     border-radius: 8px;
@@ -255,3 +263,44 @@
       background-position: 800px 0;
     }
   }
+
+
+
+.about-container {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 30px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.about-container h1 {
+  font-size: 2.5rem;
+  color: #1976d2;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.user-card {
+  background-color: #f3f6fa;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.user-card h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.user-card h3 {
+  font-size: 1.1rem;
+  color: #555;
+} */
