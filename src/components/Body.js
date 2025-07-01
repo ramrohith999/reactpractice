@@ -15,13 +15,16 @@ const[filteredRestaurants,setFilteredRestaurants]=useState([]);
 
 const [searchText, setSearchText]= useState("");
 
+
+// https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.406498&lng=78.47724389999999&carousel=true&third_party_vendor=1
+
 useEffect(()=>{
     fetchData();
 },[]);
 
 const fetchData=async()=>{
     const data= await fetch(
-"https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.406498&lng=78.47724389999999&carousel=true&third_party_vendor=1"
+"https://swiggy-api-4c740.web.app/swiggy-api.json"
    );
 
     const json= await data.json();
@@ -51,7 +54,7 @@ return listOfRestaurants.length === 0 ? (
           placeholder="What do you wanna eat?"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400  "
         />
         <button
           onClick={() => {
@@ -62,7 +65,7 @@ return listOfRestaurants.length === 0 ? (
             );
             setFilteredRestaurants(filtered);
           }}
-          className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg shadow transition"
+          className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg shadow transition cursor-pointer"
         >
           Search
         </button>
@@ -75,7 +78,7 @@ return listOfRestaurants.length === 0 ? (
           );
           setFilteredRestaurants(filteredList);
         }}
-        className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow transition"
+        className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow transition cursor-pointer"
       >
         Top Rated Restaurants
       </button>

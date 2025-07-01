@@ -16295,7 +16295,7 @@ const Header = ()=>{
     _s();
     const [btnName, setBtnName] = (0, _react.useState)("Login");
     (0, _react.useEffect)(()=>{
-        console.log("useeffect called");
+    //console.log("useeffect called");
     }, []);
     const onlineStatus = (0, _useOnlineStatusDefault.default)();
     const { loggedInUser } = (0, _react.useContext)((0, _userContextDefault.default));
@@ -16349,21 +16349,6 @@ const Header = ()=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                         className: "hover:text-red-600 transition ",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                            to: "/grocery",
-                            children: "Grocery"
-                        }, void 0, false, {
-                            fileName: "src/components/Header.js",
-                            lineNumber: 46,
-                            columnNumber: 7
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/components/Header.js",
-                        lineNumber: 45,
-                        columnNumber: 5
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        className: "hover:text-red-600 transition ",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: "/about",
                             children: "About Us"
                         }, void 0, false, {
@@ -16395,6 +16380,7 @@ const Header = ()=>{
                         className: "relative group",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             to: "/cart",
+                            className: "flex items-center gap-3 hover:opacity-90 transition-opacity duration-200 ",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                     src: (0, _constants.CART_LOGO),
@@ -16405,9 +16391,19 @@ const Header = ()=>{
                                     lineNumber: 58,
                                     columnNumber: 7
                                 }, undefined),
-                                "- (",
-                                cartItems.length,
-                                " items)"
+                                "- ",
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                    className: " text-md",
+                                    children: [
+                                        "(",
+                                        cartItems.length,
+                                        " items)"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/Header.js",
+                                    lineNumber: 63,
+                                    columnNumber: 9
+                                }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Header.js",
@@ -27109,11 +27105,12 @@ const Body = ()=>{
     const [listOfRestaurants, setListOfRestaurants] = (0, _react.useState)([]);
     const [filteredRestaurants, setFilteredRestaurants] = (0, _react.useState)([]);
     const [searchText, setSearchText] = (0, _react.useState)("");
+    // https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.406498&lng=78.47724389999999&carousel=true&third_party_vendor=1
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
     const fetchData = async ()=>{
-        const data = await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.406498&lng=78.47724389999999&carousel=true&third_party_vendor=1");
+        const data = await fetch("https://swiggy-api-4c740.web.app/swiggy-api.json");
         const json = await data.json();
         console.log(json);
         setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -27124,13 +27121,13 @@ const Body = ()=>{
         children: "Looks like you are offline. please check your internet connection"
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 37,
+        lineNumber: 40,
         columnNumber: 33
     }, undefined);
     const { setUserName, loggedInUser } = (0, _react.useContext)((0, _userContextDefault.default));
     return listOfRestaurants.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 43,
+        lineNumber: 46,
         columnNumber: 3
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "bg-gray-50 min-h-screen px-6 py-6",
@@ -27146,10 +27143,10 @@ const Body = ()=>{
                                 placeholder: "What do you wanna eat?",
                                 value: searchText,
                                 onChange: (e)=>setSearchText(e.target.value),
-                                className: "flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                                className: "flex-1 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400  "
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 49,
+                                lineNumber: 52,
                                 columnNumber: 9
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27157,17 +27154,17 @@ const Body = ()=>{
                                     const filtered = listOfRestaurants.filter((restaurant)=>restaurant.info.name.toLowerCase().includes(searchText.toLowerCase()));
                                     setFilteredRestaurants(filtered);
                                 },
-                                className: "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg shadow transition",
+                                className: "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg shadow transition cursor-pointer",
                                 children: "Search"
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 56,
+                                lineNumber: 59,
                                 columnNumber: 9
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 48,
+                        lineNumber: 51,
                         columnNumber: 7
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27175,17 +27172,17 @@ const Body = ()=>{
                             const filteredList = listOfRestaurants.filter((restaurant)=>restaurant.info.avgRating > 4.5);
                             setFilteredRestaurants(filteredList);
                         },
-                        className: "bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow transition",
+                        className: "bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg shadow transition cursor-pointer",
                         children: "Top Rated Restaurants"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 71,
+                        lineNumber: 74,
                         columnNumber: 7
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 47,
+                lineNumber: 50,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27197,7 +27194,7 @@ const Body = ()=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 87,
+                        lineNumber: 90,
                         columnNumber: 3
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27207,13 +27204,13 @@ const Body = ()=>{
                         className: "w-60 px-4 py-2 rounded-md border border-gray-300 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 text-gray-800 placeholder-gray-400 outline-none transition duration-200"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 90,
+                        lineNumber: 93,
                         columnNumber: 3
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 86,
+                lineNumber: 89,
                 columnNumber: 1
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27225,29 +27222,29 @@ const Body = ()=>{
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 108,
+                            lineNumber: 111,
                             columnNumber: 12
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restrauntCardDefault.default), {
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 111,
+                            lineNumber: 114,
                             columnNumber: 12
                         }, undefined)
                     }, restaurant.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 102,
+                        lineNumber: 105,
                         columnNumber: 9
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 100,
+                lineNumber: 103,
                 columnNumber: 5
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 45,
+        lineNumber: 48,
         columnNumber: 3
     }, undefined);
 };
@@ -27525,52 +27522,53 @@ class About extends (0, _reactDefault.default).Component {
     render() {
         console.log("parent render");
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: "about-container",
+            className: "about-container max-w-3xl mx-auto px-6 py-12",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                    children: "About us"
+                    className: "text-4xl font-extrabold text-gray-800 mb-6 text-center",
+                    children: "About Us"
                 }, void 0, false, {
                     fileName: "src/components/About.js",
                     lineNumber: 23,
-                    columnNumber: 13
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "text-gray-700 text-lg leading-relaxed mb-6",
+                    children: "Hi, I'm a passionate front-end developer with a love for building interactive and user-friendly web applications. I specialize in the React ecosystem and am always exploring new technologies to enhance user experience. This project is a part of my learning journey, and I'm constantly working to improve and deliver clean, scalable code."
+                }, void 0, false, {
+                    fileName: "src/components/About.js",
+                    lineNumber: 25,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "bg-gray-100 p-4 rounded-md shadow-sm flex items-center space-x-2",
                     children: [
-                        "Logged in User:",
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "text-gray-600 font-medium",
+                            children: "Logged in User:"
+                        }, void 0, false, {
+                            fileName: "src/components/About.js",
+                            lineNumber: 30,
+                            columnNumber: 11
+                        }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userContextDefault.default).Consumer, {
                             children: ({ loggedInUser })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                    className: "text-lg font-bold",
+                                    className: "text-blue-600 font-semibold text-lg",
                                     children: loggedInUser
                                 }, void 0, false, {
                                     fileName: "src/components/About.js",
-                                    lineNumber: 27,
-                                    columnNumber: 24
+                                    lineNumber: 33,
+                                    columnNumber: 15
                                 }, this)
                         }, void 0, false, {
                             fileName: "src/components/About.js",
-                            lineNumber: 26,
-                            columnNumber: 13
+                            lineNumber: 31,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/About.js",
-                    lineNumber: 24,
-                    columnNumber: 13
-                }, this),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDefault.default), {
-                    name: "Ram Rohith",
-                    location: "Dallas"
-                }, void 0, false, {
-                    fileName: "src/components/About.js",
-                    lineNumber: 32,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userclassDefault.default), {
-                    name: "Sunny",
-                    location: "Hyderabad"
-                }, void 0, false, {
-                    fileName: "src/components/About.js",
-                    lineNumber: 36,
+                    lineNumber: 29,
                     columnNumber: 9
                 }, this)
             ]
@@ -27755,93 +27753,78 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _s = $RefreshSig$();
 const Contact = ()=>{
-    _s();
-    const [userData, setUserData] = (0, _react.useState)([]);
-    (0, _react.useEffect)(()=>{
-        fetchgit();
-    }, []);
-    const fetchgit = async ()=>{
-        const data = await fetch("https://api.github.com/users/ramrohith999");
-        const json = await data.json();
-        console.log(json);
-        setUserData(json);
-    };
-    const { name, avatar_url } = userData;
+    // const[userData,setUserData]=useState([]);
+    // useEffect(()=>{
+    //   fetchgit();
+    // },[]);
+    // const fetchgit= async() =>{
+    //   const data= await fetch("https://api.github.com/users/ramrohith999");
+    //   const json= await data.json();
+    //   console.log(json);
+    //   setUserData(json);
+    // }
+    // const{name,avatar_url}=userData;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
-                className: "text-3xl m-12 w-16",
-                children: name
-            }, void 0, false, {
-                fileName: "src/components/Contact.js",
-                lineNumber: 24,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                className: "w-80 ",
-                src: avatar_url,
-                alt: "not rendered"
-            }, void 0, false, {
-                fileName: "src/components/Contact.js",
-                lineNumber: 25,
-                columnNumber: 9
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                        children: "Name: "
-                    }, void 0, false, {
-                        fileName: "src/components/Contact.js",
-                        lineNumber: 28,
-                        columnNumber: 9
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "text",
-                        className: "border border-black text-lg m-2 p-2"
-                    }, void 0, false, {
-                        fileName: "src/components/Contact.js",
-                        lineNumber: 29,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                        children: "message: "
-                    }, void 0, false, {
-                        fileName: "src/components/Contact.js",
-                        lineNumber: 30,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "text",
-                        className: "border border-black text-lg m-2 p-2"
-                    }, void 0, false, {
-                        fileName: "src/components/Contact.js",
-                        lineNumber: 31,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        className: "border border-black rounded-lg text-white shadow-md bg-amber-950 p-4 m-4 cursor-pointer ",
-                        children: "Submit"
-                    }, void 0, false, {
-                        fileName: "src/components/Contact.js",
-                        lineNumber: 32,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Contact.js",
-                lineNumber: 27,
-                columnNumber: 9
-            }, undefined)
-        ]
-    }, void 0, true, {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+                    children: "contact"
+                }, void 0, false, {
+                    fileName: "src/components/Contact.js",
+                    lineNumber: 28,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                    children: "Name: "
+                }, void 0, false, {
+                    fileName: "src/components/Contact.js",
+                    lineNumber: 29,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    type: "text",
+                    className: "border border-black text-lg m-2 p-2"
+                }, void 0, false, {
+                    fileName: "src/components/Contact.js",
+                    lineNumber: 30,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                    children: "message: "
+                }, void 0, false, {
+                    fileName: "src/components/Contact.js",
+                    lineNumber: 31,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    type: "text",
+                    className: "border border-black text-lg m-2 p-2"
+                }, void 0, false, {
+                    fileName: "src/components/Contact.js",
+                    lineNumber: 32,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    className: "border border-black rounded-lg text-white shadow-md bg-amber-950 p-4 m-4 cursor-pointer ",
+                    children: "Submit"
+                }, void 0, false, {
+                    fileName: "src/components/Contact.js",
+                    lineNumber: 33,
+                    columnNumber: 11
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/Contact.js",
+            lineNumber: 27,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
         fileName: "src/components/Contact.js",
         lineNumber: 23,
         columnNumber: 5
     }, undefined);
 };
-_s(Contact, "a5RRa6NGDeZPfKLUsTyKB81I/p0=");
 _c = Contact;
 exports.default = Contact;
 var _c;

@@ -10,7 +10,7 @@ const Header=()=>{
     const [btnName, setBtnName]=useState("Login");
 
     useEffect(()=>{
-        console.log("useeffect called");
+        //console.log("useeffect called");
     },[]);
 
     const onlineStatus=useOnlineStatus();
@@ -42,9 +42,9 @@ const Header=()=>{
     <li className="hover:text-red-600 transition ">
       <Link to="/">Home</Link>
     </li>
-    <li className="hover:text-red-600 transition ">
+    {/* <li className="hover:text-red-600 transition ">
       <Link to="/grocery">Grocery</Link>
-    </li>
+    </li> */}
     <li className="hover:text-red-600 transition ">
       <Link to="/about">About Us</Link>
     </li>
@@ -54,13 +54,13 @@ const Header=()=>{
 
     {/*  Cart */}
     <li className="relative group">
-      <Link to="/cart">
+      <Link to="/cart" className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-200 ">
       <img
         src={CART_LOGO}
         alt="Cart"
         className="w-14 h-14 hover:scale-110 transition-transform duration-300 cursor-pointer"
       />
-      - ({cartItems.length} items)
+      - <span className=" text-md">({cartItems.length} items)</span>
       
       </Link>
            
