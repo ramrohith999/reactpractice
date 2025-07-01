@@ -2,3 +2,9 @@
 /dist
 .parcel-cache
 /coverage
+
+# macOS system files
+.DS_Store
+
+# VSCode settings
+.vscode/
