@@ -1,6 +1,6 @@
 import React from "react";
 import User from "./User";
-import UserClass from "./Userclass";
+import UserClass from "./UserClass";
 import UserContext from "../utils/UserContext";
 
 class About extends React.Component{
